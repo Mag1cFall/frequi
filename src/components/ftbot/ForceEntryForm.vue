@@ -26,12 +26,12 @@ const orderSide = ref<OrderSides>(OrderSides.long);
 const enterTag = ref('force_entry');
 
 const orderTypeOptions = [
-  { value: 'market', text: 'Market' },
-  { value: 'limit', text: 'Limit' },
+  { value: 'market', text: '市价单' },
+  { value: 'limit', text: '限价单' },
 ];
 const orderSideOptions = [
-  { value: 'long', text: 'Long' },
-  { value: 'short', text: 'Short' },
+  { value: 'long', text: '做多' },
+  { value: 'short', text: '做空' },
 ];
 
 const checkFormValidity = () => {
@@ -93,14 +93,14 @@ const handleEntry = () => {
 <template>
   <Dialog
     v-model:visible="model"
-    :header="positionIncrease ? `Increasing position for ${pair}` : 'Force entering a trade'"
+    :header="positionIncrease ? `为 ${pair} 增加仓位` : '强制进场交易'"
     modal
     @show="resetForm"
     @hide="resetForm"
   >
     <form ref="form" class="space-y-4 md:min-w-[32rem]" @submit.prevent="handleSubmit">
       <div v-if="botStore.activeBot.botFeatures.forceEnterShort && botStore.activeBot.shortAllowed">
-        <label class="block font-medium mb-1">Order direction (Long or Short)</label>
+        <label class="block font-medium mb-1">订单方向 (做多或做空)</label>
         <SelectButton
           v-model="orderSide"
           :options="orderSideOptions"
@@ -113,7 +113,7 @@ const handleEntry = () => {
       </div>
 
       <div>
-        <label for="pair-input" class="block font-medium mb-1">Pair</label>
+        <label for="pair-input" class="block font-medium mb-1">交易对</label>
         <InputText
           id="pair-input"
           v-model="selectedPair"
@@ -126,7 +126,7 @@ const handleEntry = () => {
       </div>
 
       <div>
-        <label for="price-input" class="block font-medium mb-1">Price [optional]</label>
+        <label for="price-input" class="block font-medium mb-1">价格 [可选]</label>
         <InputNumber
           id="price-input"
           v-model="price"
@@ -141,7 +141,7 @@ const handleEntry = () => {
 
       <div>
         <label for="stake-input" class="block font-medium mb-1"
-          >* Stake-amount in {{ botStore.activeBot.stakeCurrency }} [optional]</label
+          >* 下单金额 ({{ botStore.activeBot.stakeCurrency }}) [可选]</label
         >
         <InputNumber
           id="stake-input"
@@ -156,7 +156,7 @@ const handleEntry = () => {
 
       <div v-if="botStore.activeBot.botFeatures.forceEnterShort && botStore.activeBot.shortAllowed">
         <label for="leverage-input" class="block font-medium mb-1"
-          >Leverage to apply [optional]</label
+          >应用的杠杆 [可选]</label
         >
         <InputNumber
           id="leverage-input"
@@ -171,7 +171,7 @@ const handleEntry = () => {
       </div>
 
       <div>
-        <label class="block text-sm font-medium mb-1">OrderType</label>
+        <label class="block text-sm font-medium mb-1">订单类型</label>
         <SelectButton
           v-model="ordertype"
           :options="orderTypeOptions"
@@ -184,7 +184,7 @@ const handleEntry = () => {
 
       <div v-if="botStore.activeBot.botFeatures.forceEntryTag">
         <label for="enterTag-input" class="block text-sm font-medium mb-1"
-          >* Custom entry tag [optional]</label
+          >* 自定义进场标签 [可选]</label
         >
         <InputText id="enterTag-input" v-model="enterTag" class="w-full" />
       </div>
@@ -192,8 +192,8 @@ const handleEntry = () => {
 
     <template #footer>
       <div class="flex justify-end gap-2">
-        <Button severity="secondary" size="small" @click="model = false"> Cancel </Button>
-        <Button severity="primary" size="small" @click="handleEntry"> Enter Position </Button>
+        <Button severity="secondary" size="small" @click="model = false"> 取消 </Button>
+        <Button severity="primary" size="small" @click="handleEntry"> 建立仓位 </Button>
       </div>
     </template>
   </Dialog>

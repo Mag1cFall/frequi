@@ -211,7 +211,7 @@ function updateChart(initial = false) {
 
     series: [
       {
-        name: 'Candles',
+        name: 'K线',
         type: 'candlestick',
         barWidth: '80%',
         itemStyle: {
@@ -228,7 +228,7 @@ function updateChart(initial = false) {
         ...generateMarkArea(props.dataset, props.showMarkArea),
       },
       {
-        name: 'Volume',
+        name: '成交量',
         type: 'bar',
         xAxisIndex: 1,
         yAxisIndex: 1,
@@ -248,39 +248,39 @@ function updateChart(initial = false) {
     const signalConfigs = [
       {
         colData: colEntryData,
-        name: 'Entry',
+        name: '进场',
         symbol: 'triangle',
         symbolSize: 10,
         color: buySignalColor,
-        tooltipPrefix: 'Long entry',
+        tooltipPrefix: '做多进场',
         colTooltip: colEnterTag,
       },
       {
         colData: colExitData,
-        name: 'Exit',
+        name: '出场',
         symbol: 'diamond',
         symbolSize: 8,
         color: sellSignalColor,
-        tooltipPrefix: 'Long exit',
+        tooltipPrefix: '做多出场',
         colTooltip: colExitTag,
       },
       {
         colData: colShortEntryData,
-        name: 'Entry',
+        name: '进场',
         symbol: 'triangle',
         symbolSize: 10,
         symbolRotate: 180,
         color: shortEntrySignalColor,
-        tooltipPrefix: 'Short entry',
+        tooltipPrefix: '做空进场',
         colTooltip: colEnterTag,
       },
       {
         colData: colShortExitData,
-        name: 'Exit',
+        name: '出场',
         symbol: 'pin',
         symbolSize: 8,
         color: shortexitSignalColor,
-        tooltipPrefix: 'Short exit',
+        tooltipPrefix: '做空出场',
         colTooltip: colExitTag,
       },
     ];
@@ -458,7 +458,7 @@ function updateChart(initial = false) {
     delete chartOptions.value.grid[chartOptions.value.grid.length - 1].top;
   }
 
-  const nameTrades = 'Trades';
+  const nameTrades = '交易';
   if (!Array.isArray(chartOptions.value.legend) && chartOptions.value.legend?.data) {
     // Insert trades into legend, after the default columns
     chartOptions.value.legend.data.splice(4, 0, nameTrades);
@@ -496,7 +496,7 @@ function initializeChartOptions() {
     animation: false,
     legend: {
       // Initial legend, further entries are pushed to the below list
-      data: ['Candles', 'Volume', 'Entry', 'Exit'],
+      data: ['K线', '成交量', '进场', '出场'],
       right: '1%',
       type: 'scroll',
       pageTextStyle: {
@@ -583,7 +583,7 @@ function initializeChartOptions() {
         scale: true,
         gridIndex: 1,
         splitNumber: 2,
-        name: 'volume',
+        name: '成交量',
         nameLocation: 'middle',
         position: props.labelSide,
         nameGap: NAMEGAP,

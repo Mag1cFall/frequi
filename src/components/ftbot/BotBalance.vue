@@ -48,15 +48,15 @@ const chartValues = computed<BalanceValues[]>(() => {
 
 const tableFields = computed(() => {
   return [
-    { field: 'currency', header: 'Currency' },
+    { field: 'currency', header: '币种' },
     {
       field: showBotOnly.value && canUseBotBalance.value ? 'bot_owned' : 'free',
-      header: 'Available',
+      header: '可用',
       asCurrency: true,
     },
     {
       field: showBotOnly.value && canUseBotBalance.value ? 'est_stake_bot' : 'est_stake',
-      header: `in ${botStore.activeBot.balance.stake}`,
+      header: `以 ${botStore.activeBot.balance.stake} 计价`,
       asCurrency: true,
     },
   ];
@@ -74,12 +74,12 @@ onMounted(() => {
 <template>
   <div>
     <div class="flex flex-wrap flex-row mb-2 justify-end items-center">
-      <label class="text-xl ms-1 me-auto mb-0">{{ showBotOnly ? 'Bot' : 'Account' }} Balance</label>
+      <label class="text-xl ms-1 me-auto mb-0">{{ showBotOnly ? '机器人' : '账户' }} 余额</label>
       <div class="flex flex-row gap-1">
         <Button
           v-if="canUseBotBalance"
           severity="secondary"
-          :tooltip="!showBotOnly ? 'Showing Account balance' : 'Showing Bot balance'"
+          :tooltip="!showBotOnly ? '显示账户余额' : '显示机器人余额'"
           @click="showBotOnly = !showBotOnly"
         >
           <template #icon>
@@ -89,7 +89,7 @@ onMounted(() => {
         </Button>
         <Button
           severity="secondary"
-          :tooltip="!hideSmallBalances ? 'Hide small balances' : 'Show all balances'"
+          :tooltip="!hideSmallBalances ? '隐藏小额余额' : '显示所有余额'"
           @click="hideSmallBalances = !hideSmallBalances"
         >
           <template #icon>
@@ -121,14 +121,14 @@ onMounted(() => {
         >
         <ColumnGroup type="footer">
           <Row>
-            <Column footer="Total" f />
+            <Column footer="总计" f />
             <Column>
               <template #footer>
                 <span
                   class="font-italic"
-                  :title="`Increase over initial capital of ${formatCurrency(
+                  :title="`相较于初始资本 ${formatCurrency(
                     botStore.activeBot.balance.starting_capital,
-                  )} ${botStore.activeBot.balance.stake}`"
+                  )} ${botStore.activeBot.balance.stake} 的增长`"
                 >
                   {{ formatPercent(botStore.activeBot.balance.starting_capital_ratio) }}
                 </span>

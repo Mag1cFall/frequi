@@ -99,13 +99,13 @@ watch(
       <PairlistConfigActions />
       <div class="border rounded-sm border-surface-500 p-2 mb-2">
         <div class="flex items-center gap-2 my-2">
-          <span class="col-auto">Stake currency: </span>
+          <span class="col-auto">计价货币: </span>
           <InputText v-model="pairlistStore.stakeCurrency" size="small" />
         </div>
 
         <div class="mb-2 border rounded-sm border-surface-500 p-2 text-start">
           <BaseCheckbox v-model="pairlistStore.customExchange" class="mb-2">
-            Custom Exchange
+            自定义交易所
           </BaseCheckbox>
           <Transition name="fade">
             <ExchangeSelect
@@ -121,8 +121,7 @@ watch(
         class="my-2"
         severity="warn"
       >
-        First entry in the pairlist must be a Generating pairlist, like StaticPairList or
-        VolumePairList.
+        列表中的第一个必须是生成式交易对列表，例如 StaticPairList 或 VolumePairList。
       </Message>
       <div
         ref="pairlistConfigsEl"
@@ -147,8 +146,8 @@ watch(
         option-label="value"
         option-value="value"
         :options="[
-          { value: 'Config' },
-          { value: 'Results', disabled: pairlistStore.whitelist.length === 0 },
+          { value: '配置' },
+          { value: '结果', disabled: pairlistStore.whitelist.length === 0 },
         ]"
         option-disabled="disabled"
       >
@@ -181,7 +180,7 @@ watch(
 }
 
 .empty:after {
-  content: 'Drag pairlist here';
+  content: '拖动交易对列表到此处';
   position: absolute;
   align-self: center;
   font-size: 1.1rem;

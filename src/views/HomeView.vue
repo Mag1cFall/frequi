@@ -8,22 +8,22 @@
       title="Freqtrade logo"
       class="logo-svg my-5 mx-auto dark:bg-white bg-black sm:w-[250px] sm:h-[250px] w-[150px] h-[150px] transition-all duration-300"
     />
-    <h1 class="font-bold text-2xl sm:text-4xl mb-4 transition-all">Welcome to the Freqtrade UI</h1>
-    <div>This page allows you to control your trading bot.</div>
+    <h1 class="font-bold text-2xl sm:text-4xl mb-4 transition-all">歡迎使用 Freqtrade UI</h1>
+    <div>此頁面可讓您控制您的交易機器人。</div>
     <Divider />
     <p class="mb-2">
-      If you need any help, please refer to the
+      如果您需要任何幫助，請參閱
       <a
         class="text-primary underline cursor-pointer"
         href="https://www.freqtrade.io/en/latest/"
         target="_blank"
       >
-        Freqtrade Documentation
+        Freqtrade 文件
       </a>
-      .
+      。
     </p>
 
-    <p class="mb-5">Have fun - <i>wishes you the Freqtrade team</i></p>
+    <p class="mb-5">祝您使用愉快 - <i>Freqtrade 團隊敬上</i></p>
   </div>
 </template>
 

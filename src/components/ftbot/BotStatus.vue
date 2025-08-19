@@ -5,60 +5,58 @@ const botStore = useBotStore();
 <template>
   <div v-if="botStore.activeBot.botState" class="p-4">
     <p class="mb-4">
-      Running Freqtrade <strong>{{ botStore.activeBot.version }}</strong>
+      正在运行 Freqtrade <strong>{{ botStore.activeBot.version }}</strong>
     </p>
     <p class="mb-4">
-      Running with
+      使用
       <strong>
         {{ botStore.activeBot.botState.max_open_trades }}x{{
           botStore.activeBot.botState.stake_amount
         }}
         {{ botStore.activeBot.botState.stake_currency }}
       </strong>
-      on
-      <strong>{{ botStore.activeBot.botState.exchange }}</strong> in
-      <strong>{{ botStore.activeBot.botState.trading_mode || 'spot' }}</strong> markets, with
-      Strategy <strong>{{ botStore.activeBot.botState.strategy }}</strong
-      >.
+      在
+      <strong>{{ botStore.activeBot.botState.exchange }}</strong> 的
+      <strong>{{ botStore.activeBot.botState.trading_mode || 'spot' }}</strong> 市场中运行，策略为
+      <strong>{{ botStore.activeBot.botState.strategy }}</strong
+      >。
     </p>
     <p v-if="'stoploss_on_exchange' in botStore.activeBot.botState" class="mb-4">
-      Stoploss on exchange is
+      交易所止损已
       <strong>{{
-        botStore.activeBot.botState.stoploss_on_exchange ? 'enabled' : 'disabled'
+        botStore.activeBot.botState.stoploss_on_exchange ? '启用' : '禁用'
       }}</strong
-      >.
+      >。
     </p>
     <p class="mb-4">
-      Currently <strong>{{ botStore.activeBot.botState.state }}</strong
-      >,
-      <strong>force entry: {{ botStore.activeBot.botState.force_entry_enable }}</strong>
+      当前状态 <strong>{{ botStore.activeBot.botState.state }}</strong
+      >，
+      <strong>强制进场: {{ botStore.activeBot.botState.force_entry_enable }}</strong>
     </p>
     <p>
-      <strong>{{ botStore.activeBot.botState.dry_run ? 'Dry-Run' : 'Live' }}</strong>
+      <strong>{{ botStore.activeBot.botState.dry_run ? '模拟运行' : '实盘运行' }}</strong>
     </p>
     <Divider />
     <p class="mb-4">
-      Avg Profit {{ formatPercent(botStore.activeBot.profit.profit_all_ratio_mean) }} (&sum;
-      {{ formatPercent(botStore.activeBot.profit.profit_all_ratio_sum) }}) in
-      {{ botStore.activeBot.profit.trade_count }} Trades, with an average duration of
-      {{ botStore.activeBot.profit.avg_duration }}. Best pair:
-      {{ botStore.activeBot.profit.best_pair }}.
+      在 {{ botStore.activeBot.profit.trade_count }} 笔交易中，平均利润 {{ formatPercent(botStore.activeBot.profit.profit_all_ratio_mean) }} (&sum;
+      {{ formatPercent(botStore.activeBot.profit.profit_all_ratio_sum) }})，平均持仓时间 {{ botStore.activeBot.profit.avg_duration }}。最佳交易对:
+      {{ botStore.activeBot.profit.best_pair }}。
     </p>
     <p v-if="botStore.activeBot.profit.first_trade_timestamp" class="mb-4">
       <span v-if="botStore.activeBot.profit.bot_start_timestamp" class="block">
-        Bot start date:
+        机器人启动日期:
         <strong>
           <DateTimeTZ :date="botStore.activeBot.profit.bot_start_timestamp" show-timezone />
         </strong>
       </span>
       <span class="block">
-        First trade opened:
+        首笔交易开仓于:
         <strong>
           <DateTimeTZ :date="botStore.activeBot.profit.first_trade_timestamp" show-timezone />
         </strong>
       </span>
       <span class="block">
-        Last trade opened:
+        最近交易开仓于:
         <strong>
           <DateTimeTZ :date="botStore.activeBot.profit.latest_trade_timestamp" show-timezone />
         </strong>
@@ -66,11 +64,11 @@ const botStore = useBotStore();
     </p>
     <p>
       <span v-if="botStore.activeBot.profit.profit_factor" class="block">
-        Profit factor:
+        盈利因子:
         {{ botStore.activeBot.profit.profit_factor.toFixed(2) }}
       </span>
       <span v-if="botStore.activeBot.profit.trading_volume" class="block mb-4">
-        Trading volume:
+        交易量:
         {{
           formatPriceCurrency(
             botStore.activeBot.profit.trading_volume,

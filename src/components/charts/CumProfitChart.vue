@@ -38,7 +38,7 @@ use([
 ]);
 
 // Define Column labels here to avoid typos
-const CHART_PROFIT = 'Profit';
+const CHART_PROFIT = '利润';
 
 const props = withDefaults(
   defineProps<{
@@ -214,7 +214,7 @@ const cumProfitChartOptions: ComputedRefWithControl<EChartsOption> = computedWit
   () => {
     const chartOptionsLoc: EChartsOption = {
       title: {
-        text: 'Cumulative Profit',
+        text: '累计利润',
         left: 'center',
         show: props.showTitle,
       },
@@ -225,8 +225,8 @@ const cumProfitChartOptions: ComputedRefWithControl<EChartsOption> = computedWit
           const profit = params[0].data.profit;
           const currentProfit = params[0].data['currentProfit'];
           const profitText = currentProfit
-            ? `Projected profit (incl. unrealized): ${formatPrice(currentProfit, 3)}`
-            : `Profit: ${formatPrice(profit, 3)}`;
+            ? `预计利润 (含未实现): ${formatPrice(currentProfit, 3)}`
+            : `利润: ${formatPrice(profit, 3)}`;
           return `${timestampToDateString(params[1].data.date)}<br />${
             params[1].marker
           }${profitText}`;

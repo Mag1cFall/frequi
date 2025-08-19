@@ -17,8 +17,8 @@ const isRunning = computed((): boolean => {
 
 const handleStopBot = () => {
   const msg: MsgBoxObject = {
-    title: 'Stop Bot',
-    message: 'Stop the bot loop from running?',
+    title: '停止机器人',
+    message: '确定要停止机器人运行循环吗？',
     accept: () => {
       botStore.activeBot.stopBot();
     },
@@ -28,9 +28,9 @@ const handleStopBot = () => {
 
 const handleStopBuy = () => {
   const msg: MsgBoxObject = {
-    title: 'Pause - Stop Entering',
+    title: '暂停 - 停止进场',
     message:
-      'Freqtrade will continue to handle open trades, but will not enter new trades or increase position sizes.',
+      'Freqtrade 将继续处理现有持仓，但不会建立新的仓位或增加仓位大小。',
     accept: () => {
       botStore.activeBot.stopBuy();
     },
@@ -40,8 +40,8 @@ const handleStopBuy = () => {
 
 const handleReloadConfig = () => {
   const msg: MsgBoxObject = {
-    title: 'Reload',
-    message: 'Reload configuration (including strategy)?',
+    title: '重新加载',
+    message: '重新加载配置（包括策略）吗？',
     accept: () => {
       console.log('reload...');
       botStore.activeBot.reloadConfig();
@@ -52,8 +52,8 @@ const handleReloadConfig = () => {
 
 const handleForceExit = () => {
   const msg: MsgBoxObject = {
-    title: 'ForceExit all',
-    message: 'Really forceexit ALL trades?',
+    title: '全部强制平仓',
+    message: '真的要强制平仓所有交易吗？',
     accept: () => {
       const payload: ForceSellPayload = {
         tradeid: 'all',
@@ -72,7 +72,7 @@ const handleForceExit = () => {
       size="large"
       severity="secondary"
       :disabled="!botStore.activeBot.isTrading || isRunning"
-      title="Start Trading"
+      title="开始交易"
       @click="botStore.activeBot.startBot()"
     >
       <template #icon>
@@ -83,7 +83,7 @@ const handleForceExit = () => {
       size="large"
       severity="secondary"
       :disabled="!botStore.activeBot.isTrading || !isRunning"
-      title="Stop Trading - Also stops handling open trades."
+      title="停止交易 - 这也会停止处理现有持仓。"
       @click="handleStopBot()"
     >
       <template #icon>
@@ -94,7 +94,7 @@ const handleForceExit = () => {
       size="large"
       severity="secondary"
       :disabled="!botStore.activeBot.isTrading || !isRunning"
-      title="Pause (StopBuy) - Freqtrade will continue to handle open trades, but will not enter new trades or increase position sizes."
+      title="暂停 (停止购买) - Freqtrade 将继续处理现有持仓，但不会建立新的仓位或增加仓位大小。"
       @click="handleStopBuy()"
     >
       <template #icon>
@@ -105,7 +105,7 @@ const handleForceExit = () => {
       size="large"
       severity="secondary"
       :disabled="!botStore.activeBot.isTrading"
-      title="Reload Config - reloads configuration including strategy, resetting all settings changed on the fly."
+      title="重新加载配置 - 重新加载包括策略在内的配置，重置所有动态修改的设置。"
       @click="handleReloadConfig()"
     >
       <template #icon>
@@ -116,7 +116,7 @@ const handleForceExit = () => {
       severity="secondary"
       size="large"
       :disabled="!botStore.activeBot.isTrading"
-      title="Force exit all"
+      title="全部强制平仓"
       @click="handleForceExit()"
     >
       <template #icon>
@@ -128,7 +128,7 @@ const handleForceExit = () => {
       size="large"
       severity="secondary"
       :disabled="!botStore.activeBot.isTrading || !isRunning"
-      title="Force enter - Immediately enter a trade at an optional price. Exits are then handled according to strategy rules."
+      title="强制进场 - 立即以可选价格进场交易。出场将根据策略规则处理。"
       @click="forceEnter = true"
     >
       <template #icon>
@@ -140,7 +140,7 @@ const handleForceExit = () => {
       size="large"
       severity="secondary"
       :disabled="botStore.activeBot.isTrading"
-      title="Start Trading mode"
+      title="启动交易模式"
       @click="botStore.activeBot.startTrade()"
     >
       <template #icon>

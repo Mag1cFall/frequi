@@ -55,7 +55,7 @@ watch(
       </div>
     </div>
     <div v-else>
-      <p>Evaluation returned 0 pairs</p>
+      <p>评估返回 0 个交易对</p>
     </div>
   </div>
 </template>

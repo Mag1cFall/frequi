@@ -69,7 +69,7 @@ const losingTrades = computed(() => {
 const chartOptions = computed((): EChartsOption => {
   return {
     title: {
-      text: 'Trades durations',
+      text: '交易持仓时间',
       left: 'center',
       show: props.showTitle,
     },
@@ -88,11 +88,11 @@ const chartOptions = computed((): EChartsOption => {
           config: {
             itemNameFormatter: (params) => {
               if (params.value === 0) {
-                return 'All trades';
+                return '所有交易';
               } else if (params.value === 1) {
-                return 'Winning trades';
+                return '盈利交易';
               } else if (params.value === 2) {
-                return 'Losing trades';
+                return '亏损交易';
               }
             },
           },
@@ -112,7 +112,7 @@ const chartOptions = computed((): EChartsOption => {
     yAxis: [
       {
         type: 'value',
-        name: 'Trade duration',
+        name: '交易持仓时间',
         splitArea: {
           show: true,
         },
@@ -126,13 +126,13 @@ const chartOptions = computed((): EChartsOption => {
         if (params.seriesType === 'boxplot') {
           const statistics = params.data;
           return `
-            <div>${params.name}</div>
-            <div>Min: ${formatDuration(statistics[1])}</div>
-            <div>Q1: ${formatDuration(statistics[2])}</div>
-            <div>Median: ${formatDuration(statistics[3])}</div>
-            <div>Q3: ${formatDuration(statistics[4])}</div>
-            <div>Max: ${formatDuration(statistics[5])}</div>
-          `;
+          <div>${params.name}</div>
+          <div>最小值: ${formatDuration(statistics[1])}</div>
+          <div>第一四分位数: ${formatDuration(statistics[2])}</div>
+          <div>中位数: ${formatDuration(statistics[3])}</div>
+          <div>第三四分位数: ${formatDuration(statistics[4])}</div>
+          <div>最大值: ${formatDuration(statistics[5])}</div>
+        `;
         }
         return '';
       },
@@ -146,19 +146,19 @@ const chartOptions = computed((): EChartsOption => {
           {
             min: 0,
             max: 0,
-            label: 'All Trades',
+            label: '所有交易',
             color: '#5470c6',
           },
           {
             min: 1,
             max: 1,
-            label: 'Winning Trades',
+            label: '盈利交易',
             color: '#12bb7b',
           },
           {
             min: 2,
             max: 2,
-            label: 'Losing Trades',
+            label: '亏损交易',
             color: '#ef5350',
           },
         ],
@@ -166,7 +166,7 @@ const chartOptions = computed((): EChartsOption => {
     ],
     series: [
       {
-        name: 'Trade durations',
+        name: '交易持仓时间',
         type: 'boxplot',
         datasetId: 'allTradesBoxplot',
         colorBy: 'data',

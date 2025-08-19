@@ -70,7 +70,7 @@ async function startDownload() {
 <template>
   <div class="px-1 mx-auto w-full max-w-4xl lg:max-w-7xl">
     <BackgroundJobTracking class="mb-4" />
-    <DraggableContainer header="Downloading Data" class="mx-1 p-4">
+    <DraggableContainer header="下载数据" class="mx-1 p-4">
       <div class="flex mb-3 gap-3 flex-col">
         <div class="flex flex-col gap-3">
           <div class="flex flex-col lg:flex-row gap-3">
@@ -78,13 +78,13 @@ async function startDownload() {
             <div class="flex-fill">
               <div class="flex flex-col gap-2">
                 <div class="flex justify-between">
-                  <h4 class="text-start font-bold text-lg">Select Pairs</h4>
-                  <h5 class="text-start font-bold text-lg">Pairs from template</h5>
+                  <h4 class="text-start font-bold text-lg">选择交易对</h4>
+                  <h5 class="text-start font-bold text-lg">从模板选择交易对</h5>
                 </div>
                 <div class="flex gap-2">
                   <BaseStringList
                     v-model="pairs"
-                    placeholder="Pair"
+                    placeholder="交易对"
                     size="small"
                     class="flex-grow-1"
                   />
@@ -108,8 +108,8 @@ async function startDownload() {
             <!-- Timeframes section -->
             <div class="flex-fill px-3">
               <div class="flex flex-col gap-2">
-                <h4 class="text-start font-bold text-lg">Select timeframes</h4>
-                <BaseStringList v-model="timeframes" placeholder="Timeframe" />
+                <h4 class="text-start font-bold text-lg">选择时间框架</h4>
+                <BaseStringList v-model="timeframes" placeholder="时间框架" />
               </div>
             </div>
           </div>
@@ -118,9 +118,9 @@ async function startDownload() {
           <div class="px-3 border dark:border-surface-700 border-surface-300 p-2 rounded-sm">
             <div class="flex flex-col gap-2">
               <div class="flex justify-between items-center">
-                <h4 class="text-start mb-0 font-bold text-lg">Time Selection</h4>
+                <h4 class="text-start mb-0 font-bold text-lg">时间选择</h4>
                 <BaseCheckbox v-model="timeSelection.useCustomTimerange" class="mb-0" switch>
-                  Use custom timerange
+                  使用自定义时间范围
                 </BaseCheckbox>
               </div>
 
@@ -128,11 +128,11 @@ async function startDownload() {
                 <TimeRangeSelect v-model="timeSelection.timerange" />
               </div>
               <div v-else class="flex items-center gap-2">
-                <label>Days to download:</label>
+                <label>下载天数:</label>
                 <InputNumber
                   v-model="timeSelection.days"
                   type="number"
-                  aria-label="Days to download"
+                  aria-label="下载天数"
                   :min="1"
                   :step="1"
                   size="small"
@@ -146,29 +146,28 @@ async function startDownload() {
             class="mb-2 border dark:border-surface-700 border-surface-300 rounded-sm p-2 text-start"
           >
             <Button class="mb-2" severity="secondary" @click="isAdvancedOpen = !isAdvancedOpen">
-              Advanced Options
+              高级选项
               <i-mdi-chevron-down v-if="!isAdvancedOpen" />
               <i-mdi-chevron-up v-else />
             </Button>
             <Transition>
               <div v-show="isAdvancedOpen">
                 <Message severity="info" class="mb-2 py-2">
-                  Advanced options (Erase data, Download trades, and Custom Exchange settings) will
-                  only be applied when this section is expanded.
+                  高级选项（清除数据、下载成交记录和自定义交易所设置）仅在此部分展开时生效。
                 </Message>
                 <div
                   class="mb-2 border dark:border-surface-700 border-surface-300 rounded-md p-2 text-start"
                 >
-                  <BaseCheckbox v-model="erase" class="mb-2">Erase existing data</BaseCheckbox>
+                  <BaseCheckbox v-model="erase" class="mb-2">清除现有数据</BaseCheckbox>
                   <BaseCheckbox v-model="downloadTrades" class="mb-2">
-                    Download Trades instead of OHLCV data
+                    下载成交记录而非K线数据
                   </BaseCheckbox>
                 </div>
                 <div
                   class="mb-2 border dark:border-surface-700 border-surface-300 rounded-md p-2 text-start"
                 >
                   <BaseCheckbox v-model="exchange.customExchange" class="mb-2">
-                    Custom Exchange
+                    自定义交易所
                   </BaseCheckbox>
                   <Transition name="fade">
                     <ExchangeSelect
@@ -182,7 +181,7 @@ async function startDownload() {
           </div>
 
           <div class="px-3">
-            <Button severity="primary" @click="startDownload">Start Download</Button>
+            <Button severity="primary" @click="startDownload">开始下载</Button>
           </div>
         </div>
       </div>

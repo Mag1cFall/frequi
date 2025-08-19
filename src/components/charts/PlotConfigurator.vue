@@ -242,18 +242,18 @@ const showTagsInTooltips = computed({
 
 <template>
   <div v-if="columns">
-    <label for="idPlotConfigName">Plot config name</label>
+    <label for="idPlotConfigName">图表配置名称</label>
     <PlotConfigSelect allow-edit></PlotConfigSelect>
     <Divider />
-    <BaseCheckbox v-model="showTagsInTooltips" class="mb-1">Show Tags in Tooltips</BaseCheckbox>
+    <BaseCheckbox v-model="showTagsInTooltips" class="mb-1">在提示中显示标签</BaseCheckbox>
     <Divider />
 
-    <label for="fieldSel" class="mb">Target Plot</label>
+    <label for="fieldSel" class="mb">目标图表</label>
     <EditValue
       v-model="selSubPlot"
       :allow-edit="!isMainPlot"
       allow-add
-      editable-name="plot configuration"
+      editable-name="图表配置"
       align-vertical
       @new="addSubplot"
       @delete="deleteSubplot"
@@ -274,12 +274,12 @@ const showTagsInTooltips = computed({
     </EditValue>
     <Divider />
     <div>
-      <label for="selectedIndicators">Indicators in this plot</label>
+      <label for="selectedIndicators">此图表中的指标</label>
       <ListBox
         id="selectedIndicators"
         v-model="selIndicatorName"
         size="small"
-        empty-message="No indicators selected"
+        empty-message="未选择指标"
         option-label="text"
         option-value="value"
         :disabled="addNewIndicator"
@@ -295,31 +295,31 @@ const showTagsInTooltips = computed({
     <div class="flex flex-row mt-1 gap-1">
       <Button
         severity="secondary"
-        title="Remove indicator to plot"
+        title="移除指标"
         size="small"
         :disabled="!selIndicatorName"
         class="col"
         @click="removeIndicator"
       >
-        Remove indicator
+        移除指标
       </Button>
       <Button
         severity="secondary"
-        title="Load indicator config from template"
+        title="从模板加载指标配置"
         size="small"
         @click="fromPlotTemplateVisible = !fromPlotTemplateVisible"
       >
-        Indicator from template
+        从模板选择指标
       </Button>
       <Button
         severity="primary"
-        title="Add indicator to plot"
+        title="添加指标到图表"
         size="small"
         class="col"
         :disabled="addNewIndicator"
         @click="clickAddNewIndicator"
       >
-        Add new indicator
+        添加新指标
       </Button>
     </div>
 
@@ -327,7 +327,7 @@ const showTagsInTooltips = computed({
       v-if="addNewIndicator"
       :columns="columns"
       class="mt-1"
-      label="Select indicator to add"
+      label="选择要添加的指标"
       @indicator-selected="addNewIndicatorSelected"
     />
 
@@ -346,9 +346,9 @@ const showTagsInTooltips = computed({
         severity="secondary"
         size="small"
         :disabled="addNewIndicator"
-        title="Reset to last saved configuration"
+        title="重置为上次保存的配置"
         @click="loadPlotConfig"
-        >Reset</Button
+        >重置</Button
       >
 
       <!--
@@ -373,16 +373,16 @@ const showTagsInTooltips = computed({
         size="small"
         @click="loadPlotConfigFromStrategy"
       >
-        From strategy
+        从策略加载
       </Button>
       <Button
         id="showButton"
         severity="secondary"
         size="small"
         :disabled="addNewIndicator"
-        title="Show configuration for easy transfer to a strategy"
+        title="显示配置以便轻松转移到策略"
         @click="showConfig = !showConfig"
-        >{{ showConfig ? 'Hide' : 'Show' }}</Button
+        >{{ showConfig ? '隐藏' : '显示' }}</Button
       >
 
       <Button
@@ -390,9 +390,9 @@ const showTagsInTooltips = computed({
         size="small"
         data-toggle="tooltip"
         :disabled="addNewIndicator"
-        title="Save configuration"
+        title="保存配置"
         @click="savePlotConfig"
-        >Save</Button
+        >保存</Button
       >
     </div>
     <Button
@@ -400,9 +400,9 @@ const showTagsInTooltips = computed({
       class="ms-1 mt-1"
       severity="secondary"
       size="small"
-      title="Load configuration from text box below"
+      title="从下面的文本框加载配置"
       @click="loadConfigFromString"
-      >Load from String</Button
+      >从字符串加载</Button
     >
     <div v-if="showConfig" class="w-full ms-1 mt-2">
       <Textarea

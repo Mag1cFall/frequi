@@ -16,11 +16,11 @@ const exchangeList = computed(() => {
 
   return [
     {
-      label: 'Supported',
+      label: '支持的',
       options: supported.map((e) => ({ value: e.classname ?? e.name, text: e.name })),
     },
     {
-      label: 'Unsupported',
+      label: '不支持的',
       options: unsupported.map((e) => ({ value: e.classname ?? e.name, text: e.name })),
     },
   ];

@@ -28,7 +28,7 @@ use([
 ]);
 
 // Define Column labels here to avoid typos
-const CHART_PROFIT = 'Trade count';
+const CHART_PROFIT = '交易次数';
 
 const props = withDefaults(
   defineProps<{
@@ -59,7 +59,7 @@ const data = computed(() => {
 const chartOptions = computed((): EChartsOption => {
   const chartOptionsLoc: EChartsOption = {
     title: {
-      text: 'Profit distribution',
+      text: '利润分布',
       left: 'center',
       show: props.showTitle,
     },
@@ -83,7 +83,7 @@ const chartOptions = computed((): EChartsOption => {
     },
     xAxis: {
       type: 'category',
-      name: 'Profit %',
+      name: '利润 %',
       nameLocation: 'middle',
       nameGap: 25,
     },
@@ -134,7 +134,7 @@ const chartOptions = computed((): EChartsOption => {
       label-for="input-bins"
       size="sm"
     >
-      <label for="input-bins">Bins</label>
+      <label for="input-bins">分组数量</label>
       <Select
         id="input-bins"
         v-model="settingsStore.profitDistributionBins"

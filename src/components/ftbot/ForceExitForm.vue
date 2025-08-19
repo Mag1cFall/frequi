@@ -58,19 +58,19 @@ const amountDebounced = refDebounced(amount, 250, { maxWait: 500 });
 
 const amountInBase = computed<string>(() => {
   return amountDebounced.value && props.trade.current_rate
-    ? `~${formatPriceCurrency(amountDebounced.value * props.trade.current_rate, props.trade.quote_currency || '', props.stakeCurrencyDecimals)} (Estimated value) `
+    ? `~${formatPriceCurrency(amountDebounced.value * props.trade.current_rate, props.trade.quote_currency || '', props.stakeCurrencyDecimals)} (预估价值) `
     : '';
 });
 const orderTypeOptions = [
-  { value: 'market', text: 'Market' },
-  { value: 'limit', text: 'Limit' },
+  { value: 'market', text: '市价单' },
+  { value: 'limit', text: '限价单' },
 ];
 </script>
 
 <template>
   <Dialog
     v-model:visible="model"
-    :header="`Force exiting a trade`"
+    :header="`强制平仓交易`"
     modal
     @show="resetForm"
     @hide="resetForm"
@@ -78,15 +78,15 @@ const orderTypeOptions = [
     <form ref="form" class="space-y-4 md:min-w-[32rem]" @submit.prevent="handleSubmit">
       <div class="mb-4">
         <p class="mb-2">
-          <span>Exiting Trade #{{ trade.trade_id }} {{ trade.pair }}.</span>
+          <span>正在平仓 #${trade.trade_id} {{ trade.pair }}。</span>
           <br />
-          <span>Currently owning {{ trade.amount }} {{ trade.base_currency }}</span>
+          <span>当前持有 {{ trade.amount }} {{ trade.base_currency }}</span>
         </p>
       </div>
 
       <div>
         <label for="stake-input" class="block font-medium mb-1">
-          Amount in {{ trade.base_currency }} [optional]
+          数量 ({{ trade.base_currency }}) [可选]
           <span class="text-sm italic ml-1">{{ amountInBase }}</span>
         </label>
         <div class="space-y-2">
@@ -106,7 +106,7 @@ const orderTypeOptions = [
       </div>
 
       <div>
-        <label class="block font-medium mb-1">*OrderType</label>
+        <label class="block font-medium mb-1">*订单类型</label>
         <SelectButton
           v-model="ordertype"
           :options="orderTypeOptions"
@@ -121,8 +121,8 @@ const orderTypeOptions = [
 
     <template #footer>
       <div class="flex justify-end gap-2">
-        <Button severity="secondary" size="small" @click="model = false">Cancel</Button>
-        <Button severity="primary" size="small" @click="handleExit">Exit Position</Button>
+        <Button severity="secondary" size="small" @click="model = false">取消</Button>
+        <Button severity="primary" size="small" @click="handleExit">平仓</Button>
       </div>
     </template>
   </Dialog>

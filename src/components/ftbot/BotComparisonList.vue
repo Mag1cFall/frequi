@@ -16,7 +16,7 @@ const tableItems = computed<ComparisonTableItems[]>(() => {
   const val: ComparisonTableItems[] = [];
   const summary: ComparisonTableItems = {
     botId: undefined,
-    botName: 'Summary',
+    botName: '摘要',
     profitClosed: 0,
     profitClosedRatio: undefined,
     profitOpen: 0,
@@ -78,7 +78,7 @@ const tableItems = computed<ComparisonTableItems[]>(() => {
 
 <template>
   <DataTable size="small" :value="tableItems">
-    <Column field="botName" header="Bot">
+    <Column field="botName" header="机器人">
       <template #body="{ data, field }">
         <div class="flex flex-row justify-between items-center">
           <div>
@@ -87,13 +87,13 @@ const tableItems = computed<ComparisonTableItems[]>(() => {
               v-model="
                 botStore.botStores[(data as unknown as ComparisonTableItems).botId ?? ''].isSelected
               "
-              title="Show this bot in Dashboard"
+              title="在仪表盘中显示此机器人"
               >{{ data[field] }}</BaseCheckbox
             >
             <BaseCheckbox
               v-if="!data.botId && botStore.botCount > 1"
               v-model="allToggled"
-              title="Toggle all bots"
+              title="切换所有机器人"
               class="font-bold"
               >{{ data[field] }}</BaseCheckbox
             >
@@ -103,42 +103,42 @@ const tableItems = computed<ComparisonTableItems[]>(() => {
             v-if="data.isOnline && data.isDryRun"
             class="items-center bg-green-800 text-slate-200"
             severity="success"
-            >Dry</Badge
+            >模拟</Badge
           >
           <Badge v-if="data.isOnline && !data.isDryRun" class="items-center" severity="warning"
-            >Live</Badge
+            >实盘</Badge
           >
           <Badge v-if="data.isOnline === false" class="items-center" severity="secondary"
-            >Offline</Badge
+            >离线</Badge
           >
         </div>
       </template>
     </Column>
-    <Column field="trades" header="Trades"> </Column>
-    <Column header="Open Profit">
+    <Column field="trades" header="交易"> </Column>
+    <Column header="持仓利润">
       <template #body="{ data }">
         <ProfitPill
-          v-if="data.profitOpen && data.botId != 'Summary'"
+          v-if="data.profitOpen && data.botId != '摘要'"
           :profit-ratio="(data as unknown as ComparisonTableItems).profitOpenRatio"
           :profit-abs="(data as unknown as ComparisonTableItems).profitOpen"
-          :profit-desc="`Total Profit (Open and realized) ${formatPercent(
+          :profit-desc="`总利润 (持仓及已实现) ${formatPercent(
             (data as ComparisonTableItems).profitOpenRatio ?? 0.0,
           )}`"
           :stake-currency="(data as ComparisonTableItems).stakeCurrency"
         />
       </template>
     </Column>
-    <Column header="Closed Profit">
+    <Column header="已实现利润">
       <template #body="{ data }">
         <ProfitPill
-          v-if="data.profitClosed && data.botId != 'Summary'"
+          v-if="data.profitClosed && data.botId != '摘要'"
           :profit-ratio="(data as ComparisonTableItems).profitClosedRatio"
           :profit-abs="(data as ComparisonTableItems).profitClosed"
           :stake-currency="(data as unknown as ComparisonTableItems).stakeCurrency"
         />
       </template>
     </Column>
-    <Column field="balance" header="Balance">
+    <Column field="balance" header="余额">
       <template #body="{ data }">
         <div v-if="data.balance">
           <span :title="(data as ComparisonTableItems).stakeCurrency"
@@ -150,12 +150,12 @@ const tableItems = computed<ComparisonTableItems[]>(() => {
             }}
           </span>
           <span class="text-sm">{{
-            ` ${data.stakeCurrency}${data.isDryRun ? ' (dry)' : ''}`
+            ` ${data.stakeCurrency}${data.isDryRun ? ' (模拟)' : ''}`
           }}</span>
         </div>
       </template>
     </Column>
-    <Column field="winVsLoss" header="W/L">
+    <Column field="winVsLoss" header="盈/亏">
       <template #body="{ data }">
         <div v-if="data.losses !== undefined">
           <span class="text-profit">{{ data.wins }}</span> /

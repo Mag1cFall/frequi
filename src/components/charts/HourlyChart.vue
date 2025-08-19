@@ -30,8 +30,8 @@ use([
 ]);
 
 // Define Column labels here to avoid typos
-const CHART_PROFIT = 'Profit %';
-const CHART_TRADE_COUNT = 'Trade Count';
+const CHART_PROFIT = '利润 %';
+const CHART_TRADE_COUNT = '交易次数';
 
 const props = withDefaults(
   defineProps<{
@@ -65,7 +65,7 @@ const hourlyData = computed(() => {
 const hourlyChartOptions = computed((): EChartsOption => {
   return {
     title: {
-      text: 'Hourly Profit',
+      text: '每小时利润',
       show: props.showTitle,
     },
     backgroundColor: 'rgba(0, 0, 0, 0)',

@@ -72,7 +72,7 @@ const metrics = computed(() =>
       <div class="flex flex-row w-full justify-between items-center">
         {{ title }}
         <div>
-          Shown metrics:
+          显示指标:
           <MultiSelect
             id="backtestMetrics"
             v-model="settingsStore.backtestAdditionalMetrics"
@@ -90,25 +90,25 @@ const metrics = computed(() =>
           {{ col.formatter(data['key'], data) }}
         </template>
       </Column>
-      <Column field="trades" header="Trades"></Column>
-      <Column field="profit_mean" header="Avg Profit %">
+      <Column field="trades" header="交易次数"></Column>
+      <Column field="profit_mean" header="平均利润 %">
         <template #body="{ data, field }">
           {{ formatPercent(data[field], 2) }}
         </template>
       </Column>
-      <Column field="profit_total_abs" :header="`Tot Profit ${props.stakeCurrency}`">
+      <Column field="profit_total_abs" :header="`总利润 ${props.stakeCurrency}`">
         <template #body="{ data, field }">
           {{ formatPrice(data[field], props.stakeCurrencyDecimals) }}
         </template>
       </Column>
-      <Column field="profit_total" header="Tot Profit %">
+      <Column field="profit_total" header="总利润 %">
         <template #body="{ data, field }">
           {{ formatPercent(data[field], 2) }}
         </template>
       </Column>
-      <Column field="wins" header="Wins"></Column>
-      <Column field="draws" header="Draws"></Column>
-      <Column field="losses" header="Losses"></Column>
+      <Column field="wins" header="盈利次数"></Column>
+      <Column field="draws" header="平局次数"></Column>
+      <Column field="losses" header="亏损次数"></Column>
 
       <Column v-for="col in metrics" :key="col.field" :field="col.field" :header="col.header">
         <template #body="{ data, field }">

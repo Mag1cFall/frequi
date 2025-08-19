@@ -22,67 +22,67 @@ const backtestResultSettings = computed(() => {
   <div class="px-0 w-full">
     <div class="flex justify-center">
       <h3 class="font-bold text-2xl mb-2">
-        Backtest-result for {{ backtestResult.strategy_name }}
+        策略 {{ backtestResult.strategy_name }} 的回测结果
       </h3>
     </div>
 
     <div class="flex flex-col text-start ms-0 me-2 gap-2">
       <div class="flex flex-col xl:flex-row">
         <div class="px-0 px-xl-0 pe-xl-1 grow">
-          <DraggableContainer header="Strategy settings">
+          <DraggableContainer header="策略设置">
             <DataTable size="small" :value="backtestResultSettings">
-              <Column field="setting" header="Setting"></Column>
-              <Column field="value" header="Value"></Column>
+              <Column field="setting" header="设置项"></Column>
+              <Column field="value" header="值"></Column>
             </DataTable>
           </DraggableContainer>
         </div>
         <div class="px-0 xl:px-0 pt-2 xl:pt-0 xl:ps-1 grow">
-          <DraggableContainer header="Metrics">
+          <DraggableContainer header="指标">
             <DataTable size="small" borderless :value="backtestResultStats">
-              <Column field="metric" header="Metric" />
-              <Column field="value" header="Value" />
+              <Column field="metric" header="指标项" />
+              <Column field="value" header="值" />
             </DataTable>
           </DraggableContainer>
         </div>
       </div>
       <BacktestResultTablePer
-        title="Results per Enter tag"
+        title="按进场标签统计的结果"
         :results="backtestResult.results_per_enter_tag"
         :stake-currency="backtestResult.stake_currency"
-        key-header="Enter Tag"
+        key-header="进场标签"
         :stake-currency-decimals="backtestResult.stake_currency_decimals"
       />
 
       <BacktestResultTablePer
-        title="Results per Exit reason"
+        title="按出场原因统计的结果"
         :results="backtestResult.exit_reason_summary ?? []"
         :stake-currency="backtestResult.stake_currency"
-        key-header="Exit Reason"
+        key-header="出场原因"
         :stake-currency-decimals="backtestResult.stake_currency_decimals"
       />
 
       <BacktestResultTablePer
         v-if="backtestResult.mix_tag_stats"
-        title="Results Mixed Tag"
+        title="混合标签结果"
         :results="backtestResult.mix_tag_stats ?? []"
         :stake-currency="backtestResult.stake_currency"
-        :key-headers="['Enter Tag', 'Exit Tag']"
+        :key-headers="['进场标签', '出场标签']"
         :stake-currency-decimals="backtestResult.stake_currency_decimals"
       />
 
       <BacktestResultTablePer
-        title="Results per pair"
+        title="按交易对统计的结果"
         :results="backtestResult.results_per_pair"
         :stake-currency="backtestResult.stake_currency"
-        key-header="Pair"
+        key-header="交易对"
         :stake-currency-decimals="backtestResult.stake_currency_decimals"
       />
-      <DraggableContainer v-if="backtestResult.periodic_breakdown" header="Periodic breakdown">
+      <DraggableContainer v-if="backtestResult.periodic_breakdown" header="周期性分析">
         <BacktestResultPeriodBreakdown :periodic-breakdown="backtestResult.periodic_breakdown">
         </BacktestResultPeriodBreakdown>
       </DraggableContainer>
 
-      <DraggableContainer header="Single trades">
+      <DraggableContainer header="单笔交易">
         <TradeList
           :trades="backtestResult.trades"
           :show-filter="true"

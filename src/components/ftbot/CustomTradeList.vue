@@ -13,12 +13,12 @@ const props = withDefaults(
     stakeCurrencyDecimals?: number;
   }>(),
   {
-    title: 'Trades',
+    title: '交易',
     stakeCurrency: '',
     activeTrades: false,
     showFilter: false,
     multiBotView: false,
-    emptyText: 'No Trades to show.',
+    emptyText: '没有可显示的交易。',
     stakeCurrencyDecimals: 3,
   },
 );
@@ -65,7 +65,7 @@ const tradeClick = (trade) => {
         v-if="showFilter"
         v-model="filterText"
         type="text"
-        placeholder="Filter"
+        placeholder="筛选"
         size="sm"
         style="width: unset"
       />

@@ -44,7 +44,7 @@ onMounted(() => {
       <div class="me-2">
         <Button
           aria-label="Close"
-          title="Pair Navigation"
+          title="交易对导航"
           severity="secondary"
           variant="outlined"
           size="small"
@@ -55,14 +55,14 @@ onMounted(() => {
         </Button>
       </div>
       <span class="grow">
-        Graph will always show the latest values for the selected strategy. <br />
-        Timerange: {{ timerange }} - {{ strategy }}
+        图表将始终显示所选策略的最新值。 <br />
+        时间范围: {{ timerange }} - {{ strategy }}
       </span>
       <div class="text-end">
         <Button
           aria-label="Close"
           variant="outlined"
-          title="Trade Navigation"
+          title="交易导航"
           size="small"
           severity="secondary"
           @click="isBarVisible.right = !isBarVisible.right"
@@ -109,7 +109,7 @@ onMounted(() => {
         />
       </Transition>
     </div>
-    <DraggableContainer header="Single trades" class="row mt-2 w-full">
+    <DraggableContainer header="单笔交易" class="row mt-2 w-full">
       <TradeList
         class="row trade-history mt-2 w-full"
         :trades="backtestResult.trades"

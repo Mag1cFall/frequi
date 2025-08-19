@@ -107,16 +107,16 @@ watch(
     <!-- <b-form-checkbox v-model="historicView">HistoricData</b-form-checkbox> -->
     <!-- </div> -->
     <div v-if="botStore.activeBot.isWebserverMode" class="md:mx-3 mt-2 px-1">
-      <Panel header="Settings" toggleable>
+      <Panel header="设置" toggleable>
         <div
           class="mb-2 border dark:border-surface-700 border-surface-300 rounded-md p-2 text-start"
         >
           <div class="flex flex-row gap-5">
             <BaseCheckbox v-model="exchange.customExchange" class="mb-2">
-              Custom Exchange
+              自定义交易所
             </BaseCheckbox>
             <span v-show="!exchange.customExchange">
-              Current Exchange:
+              当前交易所:
               {{ botStore.activeBot.botState.exchange }}
               {{ botStore.activeBot.botState.trading_mode }}
             </span>
@@ -127,19 +127,19 @@ watch(
         </div>
         <div class="grid grid-cols-3 md:grid-cols-5 mx-1 gap-1 md:gap-2">
           <div class="text-start md:me-1 col-span-2">
-            <span>Strategy</span>
+            <span>策略</span>
             <StrategySelect v-model="chartStore.strategy" class="mt-1 mb-1"></StrategySelect>
             <BaseCheckbox
               v-if="botStore.activeBot.botFeatures.chartLiveData"
               v-model="chartStore.useLiveData"
               class="align-self-center"
-              title="Use live data from the exchange. Only use if you don't have data downloaded locally."
+              title="使用交易所的实时数据。仅在本地没有下载数据时使用。"
             >
-              Use Live Data
+              使用实时数据
             </BaseCheckbox>
           </div>
           <div class="flex flex-col text-start">
-            <span>Timeframe</span>
+            <span>时间框架</span>
             <TimeframeSelect v-model="chartStore.selectedTimeframe" class="mt-1" />
           </div>
           <TimeRangeSelect

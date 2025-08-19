@@ -64,15 +64,15 @@ const noDatasetText = computed((): string => {
 
   switch (status) {
     case LoadingStatus.not_loaded:
-      return 'Not loaded yet.';
+      return '尚未加载。';
     case LoadingStatus.loading:
-      return 'Loading...';
+      return '加载中...';
     case LoadingStatus.success:
-      return 'No data available';
+      return '无可用数据';
     case LoadingStatus.error:
-      return 'Failed to load data';
+      return '加载数据失败';
     default:
-      return 'Unknown';
+      return '未知';
   }
 });
 const showPlotConfigModal = ref(false);
@@ -175,7 +175,7 @@ onMounted(() => {
           </Select>
 
           <Button
-            title="Refresh chart"
+            title="刷新图表"
             severity="secondary"
             :disabled="!!!botStore.activeBot.plotPair || isLoadingDataset"
             size="small"
@@ -190,42 +190,42 @@ onMounted(() => {
             small
             label="Spinning"
           />
-          <div class="flex flex-col">
-            <div class="flex flex-row flex-wrap">
-              <small v-if="dataset" class="ms-2 text-sm text-nowrap" title="Long entry signals"
-                >Long entries: {{ dataset.enter_long_signals || dataset.buy_signals }}</small
-              >
-              <small v-if="dataset" class="ms-2 text-sm text-nowrap" title="Long exit signals"
-                >Long exit: {{ dataset.exit_long_signals || dataset.sell_signals }}</small
-              >
-            </div>
-            <div class="flex flex-row flex-wrap">
-              <small v-if="dataset && dataset.enter_short_signals" class="ms-2 text-sm text-nowrap"
-                >Short entries: {{ dataset.enter_short_signals }}</small
-              >
-              <small v-if="dataset && dataset.exit_short_signals" class="ms-2 text-sm text-nowrap"
-                >Short exits: {{ dataset.exit_short_signals }}</small
-              >
-            </div>
-          </div>
-        </div>
-        <div class="ms-auto flex items-center gap-2">
-          <BaseCheckbox v-model="settingsStore.showMarkArea">
-            <span class="text-nowrap">Show Chart Areas</span>
-          </BaseCheckbox>
-          <BaseCheckbox v-model="settingsStore.useHeikinAshiCandles">
-            <span class="text-nowrap">Heikin Ashi</span>
-          </BaseCheckbox>
+         <div class="flex flex-col">
+           <div class="flex flex-row flex-wrap">
+             <small v-if="dataset" class="ms-2 text-sm text-nowrap" title="做多进场信号"
+               >做多进场: {{ dataset.enter_long_signals || dataset.buy_signals }}</small
+             >
+             <small v-if="dataset" class="ms-2 text-sm text-nowrap" title="做多出场信号"
+               >做多出场: {{ dataset.exit_long_signals || dataset.sell_signals }}</small
+             >
+           </div>
+           <div class="flex flex-row flex-wrap">
+             <small v-if="dataset && dataset.enter_short_signals" class="ms-2 text-sm text-nowrap"
+               >做空进场: {{ dataset.enter_short_signals }}</small
+             >
+             <small v-if="dataset && dataset.exit_short_signals" class="ms-2 text-sm text-nowrap"
+               >做空出场: {{ dataset.exit_short_signals }}</small
+             >
+           </div>
+         </div>
+       </div>
+       <div class="ms-auto flex items-center gap-2">
+         <BaseCheckbox v-model="settingsStore.showMarkArea">
+           <span class="text-nowrap">显示图表区域</span>
+         </BaseCheckbox>
+         <BaseCheckbox v-model="settingsStore.useHeikinAshiCandles">
+           <span class="text-nowrap">平均K线</span>
+         </BaseCheckbox>
 
-          <PlotConfigSelect></PlotConfigSelect>
+         <PlotConfigSelect></PlotConfigSelect>
 
-          <div class="me-0 md:me-1">
-            <Button
-              size="small"
-              title="Plot configurator"
-              severity="secondary"
-              @click="showConfigurator"
-            >
+         <div class="me-0 md:me-1">
+           <Button
+             size="small"
+             title="图表配置器"
+             severity="secondary"
+             @click="showConfigurator"
+           >
               <template #icon>
                 <i-mdi-cog width="12" height="12" />
               </template>
@@ -256,7 +256,7 @@ onMounted(() => {
               {{ noDatasetText }}
             </div>
             <p v-if="botStore.activeBot.historyTakesLonger">
-              This is taking longer than expected ... Hold on ...
+              加载时间超出预期...请稍候...
             </p>
           </div>
         </div>
@@ -275,7 +275,7 @@ onMounted(() => {
       v-if="plotConfigModal"
       id="plotConfiguratorModal"
       v-model:visible="showPlotConfigModal"
-      header="Plot Configurator"
+      header="图表配置器"
       ok-only
       hide-backdrop
     >

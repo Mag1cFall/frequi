@@ -49,14 +49,14 @@ function scrollToBottom() {
         id="refresh-logs"
         severity="secondary"
         size="small"
-        title="Reload Logs"
+        title="重新加载日志"
         @click="refreshLogs"
       >
         <template #icon>
           <i-mdi-refresh />
         </template>
       </Button>
-      <Button size="small" title="Scroll to bottom" severity="secondary" @click="scrollToBottom">
+      <Button size="small" title="滚动到底部" severity="secondary" @click="scrollToBottom">
         <template #icon>
           <i-mdi-arrow-down-thick />
         </template>
