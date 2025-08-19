@@ -25,35 +25,34 @@ const resetDynamicLayout = () => {
 
 <template>
   <Card class="mx-auto mt-3 p-4 max-w-4xl">
-    <template #title>FreqUI Settings</template>
+    <template #title>FreqUI 設定</template>
     <template #content>
       <div class="flex flex-col gap-4 text-start dark:text-surface-300">
-        <p class="text-left">UI Version: {{ settingsStore.uiVersion }}</p>
+        <p class="text-left">UI 版本: {{ settingsStore.uiVersion }}</p>
 
         <div class="border border-surface-400 rounded-sm p-4 space-y-4">
-          <h4 class="text-xl font-semibold">UI settings</h4>
+          <h4 class="text-xl font-semibold">UI 設定</h4>
 
           <BaseCheckbox v-model="layoutStore.layoutLocked" class="space-y-1">
-            Lock dynamic layouts
+            鎖定動態佈局
             <template #hint>
-              Lock dynamic layouts, so they cannot move anymore. Can also be set from the navbar at
-              the top.
+              鎖定動態佈局，使其無法移動。也可以從頂部的導航欄設定。
             </template>
           </BaseCheckbox>
 
           <div class="flex flex-row items-center gap-2 space-y-2">
             <Button severity="secondary" size="small" class="mb-0" @click="resetDynamicLayout"
-              >Reset layout</Button
+              >重置佈局</Button
             >
             <small class="block text-surface-600 dark:text-surface-400"
-              >Reset dynamic layouts to how they were.</small
+              >將動態佈局重置為預設值。</small
             >
           </div>
 
           <Divider />
 
           <div class="space-y-1">
-            <label class="block text-sm">Show open trades in header</label>
+            <label class="block text-sm">在頁首顯示當前交易</label>
             <Select
               v-model="settingsStore.openTradesInTitle"
               :options="openTradesOptions"
@@ -63,12 +62,12 @@ const resetDynamicLayout = () => {
               class="w-full"
             />
             <small class="text-surface-600 dark:text-surface-400"
-              >Decide if open trades should be visualized</small
+              >決定是否要將當前交易視覺化</small
             >
           </div>
 
           <div class="space-y-1">
-            <label class="block text-sm">UTC Timezone</label>
+            <label class="block text-sm">UTC 時區</label>
             <Select
               v-model="settingsStore.timezone"
               :options="timezoneOptions"
@@ -76,63 +75,62 @@ const resetDynamicLayout = () => {
               size="small"
             />
             <small class="text-surface-600 dark:text-surface-400"
-              >Select timezone (UTC is recommended as exchanges usually work in UTC)</small
+              >選擇時區（建議使用 UTC，因為交易所通常使用 UTC）</small
             >
           </div>
 
           <BaseCheckbox v-model="settingsStore.backgroundSync" class="space-y-1">
-            Background sync
-            <template #hint> Keep background sync running while other bots are selected. </template>
+            背景同步
+            <template #hint> 選擇其他機器人時，保持背景同步運行。 </template>
           </BaseCheckbox>
 
           <BaseCheckbox v-model="settingsStore.confirmDialog" class="space-y-1">
-            Show Confirm Dialog for Trade Exits
-            <template #hint>Use confirmation dialogs when force-exiting a trade.</template>
+            顯示平倉確認對話框
+            <template #hint>強制平倉時使用確認對話框。</template>
           </BaseCheckbox>
 
           <BaseCheckbox v-model="settingsStore.multiPaneButtonsShowText" class="space-y-1">
-            Show Text on Multi Pane Buttons
+            在綜合面版按鈕上顯示文字
             <template #hint
-              >Show text on multi pane buttons. If disabled, only shows images.</template
+              >在綜合面版按鈕上顯示文字。如果停用，只會顯示圖示。</template
             >
           </BaseCheckbox>
         </div>
 
         <div class="border border-surface-400 rounded-sm p-4 space-y-4">
-          <h4 class="text-lg font-semibold">Chart settings</h4>
+          <h4 class="text-lg font-semibold">圖表設定</h4>
 
           <div class="space-y-1">
-            <label class="block text-sm">Chart scale Side</label>
+            <label class="block text-sm">圖表刻度位置</label>
             <div class="flex gap-4">
               <div class="flex items-center">
                 <RadioButton v-model="settingsStore.chartLabelSide" value="left" size="small" />
-                <label class="ml-2">Left</label>
+                <label class="ml-2">左側</label>
               </div>
               <div class="flex items-center">
                 <RadioButton v-model="settingsStore.chartLabelSide" value="right" size="small" />
-                <label class="ml-2">Right</label>
+                <label class="ml-2">右側</label>
               </div>
             </div>
             <small class="text-surface-600 dark:text-surface-400">
-              Should the scale be displayed on the right or left?
+              刻度應該顯示在右側還是左側？
             </small>
           </div>
 
           <BaseCheckbox v-model="settingsStore.useHeikinAshiCandles" class="space-y-1">
-            Use Heikin Ashi candles
-            <template #hint>Use Heikin Ashi candles in your charts</template>
+            使用 Heikin Ashi K線
+            <template #hint>在圖表中使用 Heikin Ashi K線</template>
           </BaseCheckbox>
 
           <BaseCheckbox v-model="settingsStore.useReducedPairCalls" class="space-y-1">
-            Only request necessary columns
+            僅請求必要的欄位
             <template #hint
-              >Can reduce the transfer size for large dataframes. May require additional calls if
-              the plot config changes.</template
+              >可以減少大型數據幀的傳輸大小。如果繪圖設定變更，可能需要額外的呼叫。</template
             >
           </BaseCheckbox>
 
           <div>
-            <p>Default number of candles to display (defaults to 250)</p>
+            <p>預設顯示的K線數量（預設為 250）</p>
             <div class="flex flex-row gap-5 w-full items-center">
               <Slider
                 v-model="settingsStore.chartDefaultCandleCount"
@@ -152,7 +150,7 @@ const resetDynamicLayout = () => {
           </div>
 
           <div class="space-y-1">
-            <label class="block">Candle Color Preference</label>
+            <label class="block">K線顏色偏好</label>
             <div class="flex flex-row gap-5 items-center">
               <div
                 v-for="option in colorPreferenceOptions"
@@ -191,27 +189,27 @@ const resetDynamicLayout = () => {
         </div>
 
         <div class="border rounded-sm p-4 space-y-4">
-          <h4 class="text-lg font-semibold">Notification Settings</h4>
+          <h4 class="text-lg font-semibold">通知設定</h4>
           <div class="space-y-2">
             <BaseCheckbox v-model="settingsStore.notifications[FtWsMessageTypes.entryFill]">
-              Entry notifications
+              進場通知
             </BaseCheckbox>
             <BaseCheckbox v-model="settingsStore.notifications[FtWsMessageTypes.exitFill]">
-              Exit notifications
+              出場通知
             </BaseCheckbox>
             <BaseCheckbox v-model="settingsStore.notifications[FtWsMessageTypes.entryCancel]">
-              Entry Cancel notifications
+              取消進場通知
             </BaseCheckbox>
             <BaseCheckbox v-model="settingsStore.notifications[FtWsMessageTypes.exitCancel]">
-              Exit Cancel notifications
+              取消出場通知
             </BaseCheckbox>
           </div>
         </div>
 
         <div class="border rounded-sm p-4 space-y-4">
-          <h4 class="text-lg font-semibold">Backtesting settings</h4>
+          <h4 class="text-lg font-semibold">回測設定</h4>
           <div>
-            <label for="backtestMetrics" class="block text-sm">Backtesting metrics</label>
+            <label for="backtestMetrics" class="block text-sm">回測指標</label>
             <MultiSelect
               id="backtestMetrics"
               v-model="settingsStore.backtestAdditionalMetrics"
@@ -223,7 +221,7 @@ const resetDynamicLayout = () => {
               display="chip"
             />
             <small class="text-surface-600 dark:text-surface-400"
-              >Select which metrics should be shown on a per pair / tag basis.</small
+              >選擇應在每個交易對/標籤基礎上顯示哪些指標。</small
             >
           </div>
         </div>

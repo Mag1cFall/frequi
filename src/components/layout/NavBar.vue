@@ -102,41 +102,41 @@ watch(
 // Navigation items array
 const navItems = ref([
   {
-    label: 'Trade',
+    label: '交易',
     to: '/trade',
     visible: computed(() => !botStore.canRunBacktest),
     icon: 'i-mdi-currency-usd',
   },
   {
-    label: 'Dashboard',
+    label: '儀表板',
     to: '/dashboard',
     visible: computed(() => !botStore.canRunBacktest),
     icon: 'i-mdi-view-dashboard',
   },
   {
-    label: 'Chart',
+    label: '圖表',
     to: '/graph',
     icon: 'i-mdi-chart-line',
   },
   {
-    label: 'Logs',
+    label: '日誌',
     to: '/logs',
     icon: 'i-mdi-format-list-bulleted',
   },
   {
-    label: 'Settings',
+    label: '設定',
     to: '/settings',
     mobileOnly: true,
     icon: 'i-mdi-cog',
   },
   {
-    label: 'Backtest',
+    label: '回測',
     to: '/backtest',
     visible: computed(() => botStore.canRunBacktest),
     icon: 'i-mdi-currency-usd',
   },
   {
-    label: 'Download Data',
+    label: '下載數據',
     to: '/download_data',
     visible: computed(
       () => botStore.isWebserverMode && botStore.activeBot.botFeatures.downloadDataView,
@@ -144,7 +144,7 @@ const navItems = ref([
     icon: 'i-mdi-download',
   },
   {
-    label: 'Pairlist Config',
+    label: '交易對配置',
     to: '/pairlist_config',
     icon: 'i-mdi-format-list-numbered-rtl',
     visible: computed(
@@ -161,12 +161,12 @@ const menuItems = computed<MenuItem[]>(() => [
     disabled: true,
   },
   {
-    label: 'Settings',
+    label: '設定',
     icon: 'i-mdi-cog',
     command: () => router.push('/settings'),
   },
   {
-    label: 'Lock dynamic Layout',
+    label: '鎖定動態佈局',
     checkbox: true,
     checked: layoutStore.layoutLocked,
     command: () => {
@@ -174,12 +174,12 @@ const menuItems = computed<MenuItem[]>(() => [
     },
   },
   {
-    label: 'Reset Layout',
+    label: '重置佈局',
     icon: 'i-mdi-lock-reset',
     command: resetDynamicLayout,
   },
   {
-    label: 'Logout',
+    label: '登出',
     icon: 'i-mdi-logout',
     command: clickLogout,
     visible: botStore.hasBots && botStore.botCount === 1,
@@ -221,7 +221,7 @@ const drawerVisible = ref(false);
           <div
             v-if="!settingsStore.confirmDialog"
             class="my-auto me-5 flex text-yellow-300"
-            title="Confirm dialog deactivated, Forced exits will be executed immediately. Be careful."
+            title="確認對話框已停用，強制出場將立即執行。請小心操作。"
           >
             <i-mdi-run-fast />
             <i-mdi-alert />
@@ -255,14 +255,14 @@ const drawerVisible = ref(false);
             <span class="text-sm me-2">
               {{
                 (botStore.activeBotorUndefined && botStore.activeBotorUndefined.botName) ||
-                'No bot selected'
+                '未選擇機器人'
               }}
             </span>
             <span v-if="botStore.botCount === 1">
               {{
                 botStore.activeBotorUndefined && botStore.activeBotorUndefined.isBotOnline
-                  ? 'Online'
-                  : 'Offline'
+                  ? '線上'
+                  : '離線'
               }}
             </span>
           </div>
@@ -313,7 +313,7 @@ const drawerVisible = ref(false);
           </Button>
           <Drawer
             v-model:visible="drawerVisible"
-            header="Drawer"
+            header="選單"
             position="right"
             class="bg-primary-500"
           >
@@ -342,9 +342,9 @@ const drawerVisible = ref(false);
                 </RouterLink>
                 <Divider />
                 <span class="text-surface-200 text-center"
-                  >Version: {{ settingsStore.uiVersion }}</span
+                  >版本: {{ settingsStore.uiVersion }}</span
                 >
-
+ 
                 <div class="flex flex-row items-center justify-center">
                   <ThemeSelect show-text />
                 </div>

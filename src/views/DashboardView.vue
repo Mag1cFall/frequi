@@ -101,7 +101,7 @@ onMounted(async () => {
         :min-h="4"
         drag-allow-from=".drag-header"
       >
-        <DraggableContainer :header="`Profit over time ${botStore.botCount > 1 ? 'combined' : ''}`">
+        <DraggableContainer :header="`利潤變化 ${botStore.botCount > 1 ? '（合併）' : ''}`">
           <PeriodBreakdown multi-bot-view />
         </DraggableContainer>
       </GridItem>
@@ -116,7 +116,7 @@ onMounted(async () => {
         :min-h="4"
         drag-allow-from=".drag-header"
       >
-        <DraggableContainer header="Bot comparison">
+        <DraggableContainer header="機器人比較">
           <BotComparisonList />
         </DraggableContainer>
       </GridItem>
@@ -134,10 +134,10 @@ onMounted(async () => {
         <DraggableContainer>
           <template #header>
             <div class="flex justify-content-center">
-              Open Trades
+              當前交易
               <InfoBox
                 class="ms-2"
-                hint="Open trades of all selected bots. Click on a trade to go to the trade page for that trade/bot."
+                hint="所有選定機器人的當前交易。點擊交易可跳轉至該交易/機器人的交易頁面。"
               />
             </div>
           </template>
@@ -155,7 +155,7 @@ onMounted(async () => {
         :min-h="4"
         drag-allow-from=".drag-header"
       >
-        <DraggableContainer header="Cumulative Profit">
+        <DraggableContainer header="累計利潤">
           <CumProfitChart
             :trades="botStore.allTradesSelectedBots"
             :open-trades="botStore.allOpenTradesSelectedBots"
@@ -177,10 +177,10 @@ onMounted(async () => {
         <DraggableContainer>
           <template #header>
             <div class="flex justify-content-center">
-              Closed Trades
+              歷史交易
               <InfoBox
                 class="ms-2"
-                hint="Closed trades for all selected bots. Click on a trade to go to the trade page for that trade/bot."
+                hint="所有選定機器人的歷史交易。點擊交易可跳轉至該交易/機器人的交易頁面。"
               />
             </div>
           </template>
@@ -203,7 +203,7 @@ onMounted(async () => {
         :min-h="4"
         drag-allow-from=".drag-header"
       >
-        <DraggableContainer header="Profit Distribution">
+        <DraggableContainer header="利潤分佈">
           <ProfitDistributionChart :trades="botStore.allTradesSelectedBots" :show-title="false" />
         </DraggableContainer>
       </GridItem>
@@ -218,7 +218,7 @@ onMounted(async () => {
         :min-h="4"
         drag-allow-from=".drag-header"
       >
-        <DraggableContainer header="Trades Log">
+        <DraggableContainer header="交易日誌">
           <TradesLogChart :trades="botStore.allTradesSelectedBots" :show-title="false" />
         </DraggableContainer>
       </GridItem>

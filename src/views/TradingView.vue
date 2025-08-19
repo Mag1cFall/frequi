@@ -85,57 +85,57 @@ function refreshOHLCV(pair: string, columns: string[]) {
         :h="gridLayoutMultiPane.h"
         drag-allow-from=".drag-header"
       >
-        <DraggableContainer header="Multi Pane">
+        <DraggableContainer header="綜合面板">
           <div class="mt-1 flex justify-center">
             <BotControls class="mt-1 mb-2" />
           </div>
           <Tabs value="0" scrollable lazy>
             <TabList>
               <Tab value="0" severity="secondary">
-                <div title="Pairs combined">
+                <div title="交易對組合">
                   <span v-if="settingsStore.multiPaneButtonsShowText" class="ms-1"
-                    >Pairs combined</span
+                    >交易對組合</span
                   >
                   <i-mdi-view-list v-else />
                 </div>
               </Tab>
               <Tab value="1" severity="secondary">
-                <div title="General">
-                  <span v-if="settingsStore.multiPaneButtonsShowText" class="ms-1">General</span>
+                <div title="概覽">
+                  <span v-if="settingsStore.multiPaneButtonsShowText" class="ms-1">概覽</span>
                   <i-mdi-information v-else />
                 </div>
               </Tab>
               <Tab value="2" severity="secondary">
-                <div title="Performance">
+                <div title="表現">
                   <span v-if="settingsStore.multiPaneButtonsShowText" class="ms-1"
-                    >Performance</span
+                    >表現</span
                   >
                   <i-mdi-chart-line v-else />
                 </div>
               </Tab>
               <Tab value="3" severity="secondary">
-                <div title="Balance">
-                  <span v-if="settingsStore.multiPaneButtonsShowText" class="ms-1">Balance</span>
+                <div title="餘額">
+                  <span v-if="settingsStore.multiPaneButtonsShowText" class="ms-1">餘額</span>
                   <i-mdi-bank v-else />
                 </div>
               </Tab>
               <Tab value="4" severity="secondary">
-                <div title="Time Breakdown">
+                <div title="時間分析">
                   <span v-if="settingsStore.multiPaneButtonsShowText" class="ms-1"
-                    >Time Breakdown</span
+                    >時間分析</span
                   >
                   <i-mdi-folder-clock v-else />
                 </div>
               </Tab>
               <Tab value="5" severity="secondary">
-                <div title="Pairlist">
-                  <span v-if="settingsStore.multiPaneButtonsShowText" class="ms-1">Pairlist</span>
+                <div title="交易對列表">
+                  <span v-if="settingsStore.multiPaneButtonsShowText" class="ms-1">交易對列表</span>
                   <i-mdi-format-list-group v-else />
                 </div>
               </Tab>
               <Tab value="6" severity="secondary">
-                <div title="Pair Locks">
-                  <span v-if="settingsStore.multiPaneButtonsShowText" class="ms-1">Pair Locks</span>
+                <div title="鎖定交易對">
+                  <span v-if="settingsStore.multiPaneButtonsShowText" class="ms-1">鎖定交易對</span>
                   <i-mdi-lock-alert v-else />
                 </div>
               </Tab>
@@ -181,13 +181,13 @@ function refreshOHLCV(pair: string, columns: string[]) {
         :h="gridLayoutOpenTrades.h"
         drag-allow-from=".drag-header"
       >
-        <DraggableContainer header="Open Trades">
+        <DraggableContainer header="當前交易">
           <TradeList
             class="open-trades"
             :trades="botStore.activeBot.openTrades"
-            title="Open trades"
+            title="當前交易"
             :active-trades="true"
-            empty-text="Currently no open trades."
+            empty-text="目前沒有進行中的交易。"
           />
         </DraggableContainer>
       </GridItem>
@@ -201,13 +201,13 @@ function refreshOHLCV(pair: string, columns: string[]) {
         :h="gridLayoutTradeHistory.h"
         drag-allow-from=".drag-header"
       >
-        <DraggableContainer header="Closed Trades">
+        <DraggableContainer header="歷史交易">
           <TradeList
             class="trade-history"
             :trades="botStore.activeBot.closedTrades"
-            title="Trade history"
+            title="交易歷史"
             :show-filter="true"
-            empty-text="No closed trades so far."
+            empty-text="暫無歷史交易。"
           />
         </DraggableContainer>
       </GridItem>
@@ -226,7 +226,7 @@ function refreshOHLCV(pair: string, columns: string[]) {
         :min-h="4"
         drag-allow-from=".drag-header"
       >
-        <DraggableContainer header="Trade Detail">
+        <DraggableContainer header="交易詳情">
           <TradeDetail
             :trade="botStore.activeBot.tradeDetail"
             :stake-currency="botStore.activeBot.stakeCurrency"
@@ -244,7 +244,7 @@ function refreshOHLCV(pair: string, columns: string[]) {
         :min-h="6"
         drag-allow-from=".drag-header"
       >
-        <DraggableContainer header="Chart">
+        <DraggableContainer header="圖表">
           <CandleChartContainer
             :available-pairs="botStore.activeBot.whitelist"
             :historic-view="!!false"
